@@ -30,9 +30,10 @@ For more information, see:
 
 ```
 cesmii/
-├── config.json                 # MQTT broker configuration
-├── requirements.txt            # Python dependencies
-├── workorder_publisher.py      # Main application
+├── config.json                     # MQTT broker configuration (template)
+├── Dockerfile                      # Docker container definition
+├── requirements.txt                # Python dependencies
+├── workorder_publisher.py          # Main application
 ├── smprofiles/
 │   ├── FeedIngredientV1.jsonld     # Feed ingredient SM Profile
 │   ├── FeedIngredientV1.NodeSet2.xml # OPC UA NodeSet for feed ingredient
@@ -175,6 +176,88 @@ The application will:
 4. Wait 1 hour and repeat
 
 Press `Ctrl+C` to stop the application.
+
+## Docker Deployment
+
+The application can be deployed as a Docker container on a Linux server.
+
+### Prerequisites
+
+- Docker installed on the target Linux server
+- Git installed on the target Linux server
+
+### Deployment Steps
+
+1. **Clone the repository on the Linux server:**
+   ```bash
+   git clone https://github.com/eukodyne/cesmii.git
+   cd cesmii
+   ```
+
+2. **Create a local configuration directory:**
+   ```bash
+   sudo mkdir -p /opt/cesmii
+   ```
+
+3. **Copy and edit the configuration file with your MQTT credentials:**
+   ```bash
+   sudo cp config.json /opt/cesmii/config.json
+   sudo nano /opt/cesmii/config.json
+   ```
+
+   Update the file with your actual MQTT broker settings:
+   ```json
+   {
+     "mqtt-endpoint": {
+       "host": "your-mqtt-broker.example.com",
+       "port": 1883,
+       "username": "your-username",
+       "password": "your-password"
+     },
+     "mqtt-publish-topic": "Enterprise/YourCompany/WorkOrders"
+   }
+   ```
+
+4. **Build the Docker image:**
+   ```bash
+   docker build -t workorder-publisher .
+   ```
+
+5. **Run the container with the local config mounted:**
+   ```bash
+   docker run -d --name workorder-publisher \
+     --restart unless-stopped \
+     -v /opt/cesmii/config.json:/app/config.json:ro \
+     workorder-publisher
+   ```
+
+   The `-v` flag mounts your local config file into the container (`:ro` = read-only).
+   The `--restart unless-stopped` ensures the container restarts automatically after server reboots.
+
+### Container Management
+
+```bash
+# View container logs
+docker logs -f workorder-publisher
+
+# Stop the container
+docker stop workorder-publisher
+
+# Start the container
+docker start workorder-publisher
+
+# Remove the container
+docker rm workorder-publisher
+
+# Rebuild after pulling updates
+git pull
+docker build -t workorder-publisher .
+docker stop workorder-publisher && docker rm workorder-publisher
+docker run -d --name workorder-publisher \
+  --restart unless-stopped \
+  -v /opt/cesmii/config.json:/app/config.json:ro \
+  workorder-publisher
+```
 
 ## Example Work Order Payload
 
