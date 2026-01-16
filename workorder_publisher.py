@@ -279,7 +279,7 @@ class MQTTWorkOrderPublisher:
             self.client = mqtt.Client(
                 callback_api_version=mqtt.CallbackAPIVersion.VERSION2,
                 client_id=f"workorder-publisher-{uuid.uuid4().hex[:8]}",
-                protocol=mqtt.MQTTv5
+                # protocol=mqtt.MQTTv5
             )
 
             # Set callbacks
