@@ -1,0 +1,57 @@
+{
+  "$namespace": "https://www.github.com/eukodyne/cesmii/smprofiles/WorkOrderV1",
+  "$comment": "Work order conforming to WorkOrderV1 SM Profile",
+  "WorkOrderID": "e68308bc-4f85-46f8-8778-73efe5119096",
+  "WorkOrderNumber": 100026,
+  "TimeZone": {
+    "offset": -360,
+    "daylightSavingInOffset": false
+  },
+  "StartTimeLocal": "2026-01-16T08:02:37.789055-06:00",
+  "StartTimeUTC": "2026-01-16T14:02:37.789055Z",
+  "EndTimeLocal": "2026-01-16T16:02:37.789055-06:00",
+  "EndTimeUTC": "2026-01-16T22:02:37.789055Z",
+  "ProductID": "9c6fc633-9dbb-40f4-a63a-f6e07b2da557",
+  "ProductNumber": 2221,
+  "ProductName": "Product A",
+  "LotNumber": "LOT-20260116-080237",
+  "UnitOfMeasure": "CS",
+  "Quantity": 108.0,
+  "WeightUnitOfMeasure": "lb",
+  "Weight": 216.0,
+  "FeedIngredients": [
+    {
+      "$namespace": "https://www.github.com/eukodyne/cesmii/smprofiles/FeedIngredientV1",
+      "ProductID": "4d81e339-d83b-4c37-b4c0-77d32033b9ec",
+      "ProductNumber": 2001,
+      "ProductName": "Product A1",
+      "LotNumber": "42GS6E",
+      "UnitOfMeasure": "CS",
+      "Quantity": 10.8,
+      "WeightUnitOfMeasure": "lb",
+      "Weight": 21.6
+    },
+    {
+      "$namespace": "https://www.github.com/eukodyne/cesmii/smprofiles/FeedIngredientV1",
+      "ProductID": "10ef73ab-c284-40c9-8564-183119639a28",
+      "ProductNumber": 2002,
+      "ProductName": "Product A2",
+      "LotNumber": "X3O3WV",
+      "UnitOfMeasure": "CS",
+      "Quantity": 32.4,
+      "WeightUnitOfMeasure": "lb",
+      "Weight": 64.8
+    },
+    {
+      "$namespace": "https://www.github.com/eukodyne/cesmii/smprofiles/FeedIngredientV1",
+      "ProductID": "bf5e9685-afab-4fa8-b75f-b03d552ac4f2",
+      "ProductNumber": 2003,
+      "ProductName": "Product A3",
+      "LotNumber": "MWXWR2",
+      "UnitOfMeasure": "CS",
+      "Quantity": 64.8,
+      "WeightUnitOfMeasure": "lb",
+      "Weight": 129.6
+    }
+  ]
+}
