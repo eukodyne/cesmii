@@ -39,8 +39,48 @@ cesmii/
 │   ├── FeedIngredientV1.NodeSet2.xml # OPC UA NodeSet for feed ingredient
 │   ├── WorkOrderV1.jsonld          # Work order SM Profile
 │   └── WorkOrderV1.NodeSet2.xml    # OPC UA NodeSet for work order
+├── cesmii-profile-validator/       # SM Profile validation library
 └── README.md                       # This file
 ```
+
+## SM Profile Validator
+
+This project includes an **SM Profile Validator** library, contributed by Jonathan Wise of CESMII. The validator fills a gap in the JSON-LD ecosystem by providing runtime validation of JSON payloads against CESMII SM Profile definitions.
+
+### Key Features
+
+- **Profile-based validation**: Validates payloads against JSON-LD profile definitions
+- **OPC UA type checking**: Validates data types including Int16, Int32, Int64, Double, String, DateTime, UtcTime, Guid, Boolean, and TimeZoneDataType
+- **Nested profile support**: Validates nested structures like WorkOrders containing FeedIngredients arrays
+- **Detailed error reporting**: Returns errors with field paths for easy debugging (e.g., `FeedIngredients[0].Quantity`)
+- **Flexible loading**: Load profiles from local files or URLs
+
+### Example Usage
+
+```python
+from cesmii_validator import validate_payload, load_profile
+
+# Load profiles
+workorder_profile = load_profile("smprofiles/WorkOrderV1.jsonld")
+feedingredient_profile = load_profile("smprofiles/FeedIngredientV1.jsonld")
+
+# Validate payload
+result = validate_payload(
+    payload=your_payload,
+    profile=workorder_profile,
+    referenced_profiles={
+        "https://www.github.com/eukodyne/cesmii/smprofiles/FeedIngredientV1": feedingredient_profile,
+    }
+)
+
+if result.valid:
+    print("Payload is valid!")
+else:
+    for error in result.errors:
+        print(f"{error.path}: {error.message}")
+```
+
+For complete documentation, see the [SM Profile Validator README](cesmii-profile-validator/README.md).
 
 ## SM Profile Definitions
 
