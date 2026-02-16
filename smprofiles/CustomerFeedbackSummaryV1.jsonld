@@ -1,0 +1,74 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "cesmii": "https://profiles.cesmii.org/",
+    "opc": "http://opcfoundation.org/UA/",
+    "CustomerFeedbackSummaryV1": "https://www.github.com/eukodyne/cesmii/smprofiles/CustomerFeedbackSummaryV1#",
+    "product_number": {
+      "@id": "CustomerFeedbackSummaryV1:product_number",
+      "@type": "opc:String"
+    },
+    "feedback_count": {
+      "@id": "CustomerFeedbackSummaryV1:feedback_count",
+      "@type": "opc:Int32"
+    },
+    "summary": {
+      "@id": "CustomerFeedbackSummaryV1:summary",
+      "@type": "opc:String"
+    },
+    "timestamp": {
+      "@id": "CustomerFeedbackSummaryV1:timestamp",
+      "@type": "opc:UtcTime"
+    }
+  },
+  "@id": "https://www.github.com/eukodyne/cesmii/smprofiles/CustomerFeedbackSummaryV1",
+  "@type": "cesmii:SMProfile",
+  "cesmii:profileName": "CustomerFeedbackSummaryType",
+  "cesmii:profileVersion": "1.0.0",
+  "cesmii:namespace": "https://www.github.com/eukodyne/cesmii/smprofiles/",
+  "cesmii:description": "CESMII Smart Manufacturing Profile for Customer Feedback Summaries. Defines the structure for AI-generated summaries of customer complaints and quality recommendations, produced by analyzing feedback records associated with a product currently being processed on a production line.",
+  "cesmii:baseType": "opc:BaseObjectType",
+  "cesmii:nodeId": "ns=1;i=2001",
+  "cesmii:attributes": [
+    {
+      "@id": "CustomerFeedbackSummaryV1:product_number",
+      "cesmii:browseName": "product_number",
+      "cesmii:nodeId": "ns=1;i=7001",
+      "cesmii:dataType": {
+        "@id": "opc:String",
+        "opc:nodeId": "i=12"
+      },
+      "cesmii:description": "Identifier of the product (item number) for which customer feedback was analyzed"
+    },
+    {
+      "@id": "CustomerFeedbackSummaryV1:feedback_count",
+      "cesmii:browseName": "feedback_count",
+      "cesmii:nodeId": "ns=1;i=7002",
+      "cesmii:dataType": {
+        "@id": "opc:Int32",
+        "opc:nodeId": "i=6"
+      },
+      "cesmii:description": "Number of customer feedback records that were retrieved and summarized"
+    },
+    {
+      "@id": "CustomerFeedbackSummaryV1:summary",
+      "cesmii:browseName": "summary",
+      "cesmii:nodeId": "ns=1;i=7003",
+      "cesmii:dataType": {
+        "@id": "opc:String",
+        "opc:nodeId": "i=12"
+      },
+      "cesmii:description": "LLM-generated summary of critical quality issues, recurring complaint categories, and actionable recommendations for production operators"
+    },
+    {
+      "@id": "CustomerFeedbackSummaryV1:timestamp",
+      "cesmii:browseName": "timestamp",
+      "cesmii:nodeId": "ns=1;i=7004",
+      "cesmii:dataType": {
+        "@id": "opc:UtcTime",
+        "opc:nodeId": "i=294"
+      },
+      "cesmii:description": "UTC timestamp of when the feedback summary was generated and published"
+    }
+  ]
+}
